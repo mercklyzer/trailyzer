@@ -6,9 +6,11 @@ import "swiper/css";
 import "swiper/css/pagination";
 import "swiper/css/navigation";
 
-  
+const IMAGE_BASE_URL = 'https://image.tmdb.org/t/p/w500'
+
 const MovieRow = props => {
-    const movies = [1,2,3,4,5,6,7,8,1,2,3,4,5,6,7,8].map((number) => `images/${props.large? 'large':'small'}-movie${number}.jpg`)
+    const movies = props.movies
+
     const [aboveIndex, setAboveIndex] = useState(0)
 
     return (
@@ -61,9 +63,12 @@ const MovieRow = props => {
                     }}
                     
                     >
-                    {movies.map((movie, i) => <SwiperSlide className={styles.swiperSlide} key={i} style={{padding: '20px 0px', zIndex: i === aboveIndex? '999' : '0'}} onMouseOver={() => setAboveIndex(i)}>
-                        <img src={require("../../" + movie)} key={movie} alt="" className={`${styles.rowPoster} ${props.large? styles.rowPosterLarge : ''}`} />
-                    </SwiperSlide>)}
+                    {movies.map((movie, i) => {
+                        const {id, title, overview, poster_path} = movie
+                        return <SwiperSlide className={styles.swiperSlide} key={i} style={{padding: '20px 0px', zIndex: i === aboveIndex? '999' : '0'}} onMouseOver={() => setAboveIndex(i)}>
+                            <img src={IMAGE_BASE_URL + poster_path} key={movie} alt="" className={`${styles.rowPoster} ${props.large? styles.rowPosterLarge : ''}`} />
+                        </SwiperSlide>
+                    })}
 
                 </Swiper>
             </div>
