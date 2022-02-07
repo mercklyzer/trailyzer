@@ -6,16 +6,10 @@ import "swiper/css";
 import "swiper/css/pagination";
 import "swiper/css/navigation";
 import Modal from "../Modal";
-import {useFetch} from '../../hooks/useFetch'
+import Movie from "../Movie";
 
-const IMAGE_BASE_URL = 'https://image.tmdb.org/t/p/w500'
-
-
-
-const MovieRow = props => {
-    const movies = props.movies
-
-    const swiperBreakpoints = {
+const swiperBreakpoints = props => {
+    return {
         2000: {
             slidesPerView: props.large? 7 : 6,
             slidesPerGroup: props.large? 7 : 5,
@@ -47,25 +41,13 @@ const MovieRow = props => {
         400: {
             slidesPerView: props.large? 2 : 3,
             slidesPerGroup: props.large? 2 : 2
-        },
+        }
     }
+}
 
-    const MOVIE_DATA_URL = 'https://api.themoviedb.org/3/movie/585245/videos?api_key=f8428edb1d76821312efe3c8e4ed1995&language=en-US'
-
+const MovieRow = props => {
+    const movies = props.movies
     const [aboveIndex, setAboveIndex] = useState(0)
-    const [isShowModal, setShowModal] = useState(false)
-    const [movieId, setMovieId] = useState('')
-    const [videoKey, setVideoKey] = useState('')
-
-    // useEffect(() => {
-    //     setMovieId(movieId)
-
-    //     if(movieId){
-    //         fetch()
-    //     }
-    // }, [movieId])
-
-    // const movieData = useFetch(MOVIE_DATA_URL)
 
     return (
         <>
@@ -82,26 +64,30 @@ const MovieRow = props => {
                         }}
                         modules={[Pagination, Navigation]}
                         className="mySwiper"
-                        breakpoints={swiperBreakpoints}
-                        
-                        >
+                        breakpoints={swiperBreakpoints(props)}   
+                    >
                         {movies.map((movie, i) => {
                             const {id, title, overview, poster_path, backdrop_path} = movie
-                            return <SwiperSlide 
-                                className={styles.swiperSlide} 
-                                key={i} 
-                                style={{padding: '20px 0px', zIndex: i === aboveIndex? '999' : '0'}} 
-                                onMouseOver={() => setAboveIndex(i)}
-                                onClick={() => {setShowModal(true)}}
-                            >
-                                <img src={IMAGE_BASE_URL + poster_path} key={movie} alt="" className={`${styles.rowPoster} ${props.large? styles.rowPosterLarge : ''}`} />
-                            </SwiperSlide>
+                            return <Movie 
+                                key={i}
+                                
+                                movieId={id}
+                                title={title}
+                                description={overview}
+                                poster_path={poster_path}
+                                backdrop_path={backdrop_path}
+                                
+                                large={props.large}
+                                index={i}
+                                aboveIndex={aboveIndex}
+                                setAboveIndex={setAboveIndex}
+                            />
                         })}
 
                     </Swiper>
                 </div>
             </div>
-        <Modal isShowModal={isShowModal} setShowModal={setShowModal}/>
+        {/* <Modal isShowModal={isShowModal} setShowModal={setShowModal}/> */}
         </>
     )
 }
