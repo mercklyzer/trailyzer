@@ -17,14 +17,14 @@ const Movie = ({large, index, aboveIndex, setAboveIndex, movieId, title, descrip
             >
             <img src={IMAGE_BASE_URL + poster_path} alt="" onClick={() => {setShowModal(true)}} className={`${styles.rowPoster} ${large? styles.rowPosterLarge : ''}`} />
         </SwiperSlide>
-        <Modal 
+        {/* <Modal 
             isShowModal={isShowModal} 
             setShowModal={setShowModal}
             movieId={movieId}
             title={title}
             description={description}
             backdrop_path={backdrop_path}
-        />
+        /> */}
     </>)
 }
 
