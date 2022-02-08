@@ -11,7 +11,8 @@
 
 .modal{
     position: fixed;
-    width: 1200px;
+    width: 80%;
+    max-width: 1400px;
     max-height: calc(100vh - 40px);
     overflow-y: scroll;
     top: 40px;
@@ -83,4 +84,10 @@ iframe{
     margin: 20px;
     width: 400px;
     height: 250px;
+}
+
+@media screen and (max-width: 768px) {
+    .modal{
+        width: 90%;
+    }
 }

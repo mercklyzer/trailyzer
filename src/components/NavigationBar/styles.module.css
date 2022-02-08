@@ -8,12 +8,12 @@
     padding: 20px;
     z-index: 1;
     transition: all 0.5s;
+    z-index: 2;
 }
 
 .navLogo{
-    width: 80px;
+    width: 100px;
     object-fit: contain;
-
 }
 
 .navAvatar{
@@ -23,5 +23,4 @@
 
 .navBlack{
     background-color: #111;
-
 }

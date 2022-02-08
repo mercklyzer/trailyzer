@@ -35,7 +35,7 @@ const Modal = ({isShowModal, setShowModal, title, description, movieId, backdrop
                         <h2>Trailers</h2>
                         <div className={styles.trailerContainer}>
                             {movieData.data.map(movie => {
-                                return <iframe src={`https://www.youtube-nocookie.com/embed/${movie.key}`} allowFullScreen={true} />
+                                return <iframe key={movie.key} src={`https://www.youtube-nocookie.com/embed/${movie.key}`} allowFullScreen={true} />
                             })}
                             
                         </div>

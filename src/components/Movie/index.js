@@ -4,14 +4,10 @@ import "swiper/css";
 import Modal from "../Modal";
 import styles from './styles.module.css'
 
-
-
 const IMAGE_BASE_URL = 'https://image.tmdb.org/t/p/w500'
 
 const Movie = ({large, index, aboveIndex, setAboveIndex, movieId, title, description, poster_path, backdrop_path}) => {
     const [isShowModal, setShowModal] = useState(false)
-
-
 
     return (
     <>

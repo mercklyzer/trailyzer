@@ -22,7 +22,6 @@ function App() {
   const trendingMoviesData = useFetch(trendingMovies)
   const upcomingMoviesData = useFetch(upcomingMovies)
 
-
   return (
     <div className="App">
 
@@ -33,14 +32,6 @@ function App() {
       {!topRatedMoviesData.loading && <MovieRow title="Top Rated Movies" movies={topRatedMoviesData.data} large={true}/>}
       {!trendingMoviesData.loading && <MovieRow title="Trending Movies" movies={trendingMoviesData.data} large={true}/>}
       {!upcomingMoviesData.loading && <MovieRow title="Upcoming Movies" movies={upcomingMoviesData.data} large={true}/>}
-      {/* <MovieRow title="Top Rated" /> */}
-      {/* <MovieRow title="Trending Now" /> */}
-      {/* <MovieRow title="Action Movies" /> */}
-      {/* <MovieRow title="Comedy Movies" /> */}
-      {/* <MovieRow title="Horror Movies" /> */}
-      {/* <MovieRow title="Romance Movies" /> */}
-      {/* <MovieRow title="Documentaries" /> */}
-
 
     </div>
   );

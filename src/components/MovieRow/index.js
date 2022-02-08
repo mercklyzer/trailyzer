@@ -5,7 +5,6 @@ import { Pagination, Navigation } from "swiper";
 import "swiper/css";
 import "swiper/css/pagination";
 import "swiper/css/navigation";
-import Modal from "../Modal";
 import Movie from "../Movie";
 
 const swiperBreakpoints = props => {
@@ -50,45 +49,41 @@ const MovieRow = props => {
     const [aboveIndex, setAboveIndex] = useState(0)
 
     return (
-        <>
-            <div className={styles.row}>
-                <h2>{props.title}</h2>
-                <div className={styles.rowPosters}>
-                    <Swiper
-                        navigation={true}
-                        slidesPerView={props.large? 2 : 3}
-                        slidesPerGroup={2}
-                        spaceBetween={10}
-                        pagination={{
-                            clickable: true,
-                        }}
-                        modules={[Pagination, Navigation]}
-                        className="mySwiper"
-                        breakpoints={swiperBreakpoints(props)}   
-                    >
-                        {movies.map((movie, i) => {
-                            const {id, title, overview, poster_path, backdrop_path} = movie
-                            return <Movie 
-                                key={i}
-                                
-                                movieId={id}
-                                title={title}
-                                description={overview}
-                                poster_path={poster_path}
-                                backdrop_path={backdrop_path}
-                                
-                                large={props.large}
-                                index={i}
-                                aboveIndex={aboveIndex}
-                                setAboveIndex={setAboveIndex}
-                            />
-                        })}
-
-                    </Swiper>
-                </div>
+        <div className={styles.row}>
+            <h2>{props.title}</h2>
+            <div className={styles.rowPosters}>
+                <Swiper
+                    navigation={true}
+                    slidesPerView={props.large? 2 : 3}
+                    slidesPerGroup={2}
+                    spaceBetween={10}
+                    pagination={{
+                        clickable: true,
+                    }}
+                    modules={[Pagination, Navigation]}
+                    className="mySwiper"
+                    breakpoints={swiperBreakpoints(props)}   
+                >
+                    {movies.map((movie, i) => {
+                        const {id, title, overview, poster_path, backdrop_path} = movie
+                        return <Movie 
+                            key={i}
+                            
+                            movieId={id}
+                            title={title}
+                            description={overview}
+                            poster_path={poster_path}
+                            backdrop_path={backdrop_path}
+                            
+                            large={props.large}
+                            index={i}
+                            aboveIndex={aboveIndex}
+                            setAboveIndex={setAboveIndex}
+                        />
+                    })}
+                </Swiper>
             </div>
-        {/* <Modal isShowModal={isShowModal} setShowModal={setShowModal}/> */}
-        </>
+        </div>
     )
 }
 

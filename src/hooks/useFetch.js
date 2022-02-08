@@ -11,10 +11,7 @@ export const useFetch = (url, condition = true) => {
     
             fetch(url)
             .then((response) => response.json())
-            .then(data => {
-                console.log(data);
-                setState({data: data.results, loading: false})
-            })
+            .then(data => setState({data: data.results, loading: false}))
         }
 
     }, [url, setState, condition])
