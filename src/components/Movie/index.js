@@ -1,13 +1,14 @@
-import React, { useEffect, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { SwiperSlide } from "swiper/react";
 import "swiper/css";
 import Modal from "../Modal";
 import styles from './styles.module.css'
+import { ModalContext } from "../ModalContext";
 
 const IMAGE_BASE_URL = 'https://image.tmdb.org/t/p/w500'
 
 const Movie = ({large, index, aboveIndex, setAboveIndex, movieId, title, description, poster_path, backdrop_path}) => {
-    const [isShowModal, setShowModal] = useState(false)
+    const {setModalData} = useContext(ModalContext)
 
     return (
     <>
@@ -15,16 +16,17 @@ const Movie = ({large, index, aboveIndex, setAboveIndex, movieId, title, descrip
             style={{padding: '20px 0px', zIndex: index === aboveIndex? '999' : '0'}} 
             onMouseOver={() => setAboveIndex(index)}
             >
-            <img src={IMAGE_BASE_URL + poster_path} alt="" onClick={() => {setShowModal(true)}} className={`${styles.rowPoster} ${large? styles.rowPosterLarge : ''}`} />
+            <img src={IMAGE_BASE_URL + poster_path} alt="" onClick={() => {
+                setModalData({
+                    isShowModal: true,
+                    movieId,
+                    title,
+                    description,
+                    backdrop_path
+                })
+            }} 
+            className={`${styles.rowPoster} ${large? styles.rowPosterLarge : ''}`} />
         </SwiperSlide>
-        {/* <Modal 
-            isShowModal={isShowModal} 
-            setShowModal={setShowModal}
-            movieId={movieId}
-            title={title}
-            description={description}
-            backdrop_path={backdrop_path}
-        /> */}
     </>)
 }
 

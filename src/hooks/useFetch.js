@@ -6,6 +6,7 @@ export const useFetch = (url, condition = true) => {
 
     useEffect(() => {
         if(condition){
+            console.log("render usefetch")
             setState(state => ({data: state.data, loading: true}))
     
             fetch(url)

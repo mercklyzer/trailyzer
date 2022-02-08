@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useCallback, useEffect, useRef, useState } from "react";
 import {createPortal} from 'react-dom'
 import {useFetch} from '../../hooks/useFetch'
 import styles from './styles.module.css'
@@ -17,17 +17,24 @@ const Modal = ({isShowModal, setShowModal, title, description, movieId, backdrop
         document.body.style.overflowY = bodyOverflowStyle
     }, [isShowModal])
 
-    const movieData = useFetch(getMovieUrl(movieId, isShowModal), isShowModal)
+    const movieData = useFetch(getMovieUrl(movieId), isShowModal)
 
-    const [showIframe, setShowIframe] = useState(false)
+    // const showIframeCounter = useRef(0)
+
     
+    const [showIframeCounter, setShowIframeCounter] = useState(0)
+    
+    const closeModalHandler = useCallback(() => {
+        setShowIframeCounter(0)
+        setShowModal(false)
+    }, [])
     
 
     return createPortal(
         <>
-            <div className={`${styles.overlay} ${isShowModal? styles.active: ''}`} onClick={() => setShowModal(false)}></div>
+            <div className={`${styles.overlay} ${isShowModal? styles.active: ''}`} onClick={closeModalHandler}></div>
             <div className={`${styles.modal} ${isShowModal? styles.active: ''}`}>
-                <div className={styles.closeButton} onClick={() => setShowModal(false)}>
+                <div className={styles.closeButton} onClick={closeModalHandler}>
                     <CloseIcon />
                 </div>
                 {!movieData.loading && <>
@@ -38,14 +45,16 @@ const Modal = ({isShowModal, setShowModal, title, description, movieId, backdrop
                         <div className={styles.movieDescription}>{description}</div>
                         <h2>Trailers</h2>
                         {movieData.data.length === 0 && <div>No trailers available.</div>}
+
                         {movieData.data && <div className={styles.trailerContainer}>
-                            {movieData.data && !showIframe && <div className={styles.loaderContainer}><img src={require('../../images/loader.gif')}/></div>}
+                            {movieData.data && showIframeCounter !== movieData.data?.length && <div className={styles.loaderContainer}><img src={require('../../images/loader.gif')}/></div>}
+                            
                             {movieData.data.map(movie => {
                                 return <iframe key={movie.key} 
                                 src={`https://www.youtube.com/embed/${movie.key}`} 
-                                onLoad={() => setShowIframe(true)} //by testing, iFrames load at the same time. Thus, 1 state is sufficient
+                                onLoad={() => setShowIframeCounter(ctr => ctr+1)} 
                                 allowFullScreen={true} 
-                                style={{opacity: `${showIframe? 1 : 0}`}}
+                                style={{opacity: `${showIframeCounter === movieData.data.length? 1 : 0}`}}
                                 />
                             })}
                         </div>}
