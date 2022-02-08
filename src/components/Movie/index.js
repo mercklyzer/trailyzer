@@ -14,9 +14,8 @@ const Movie = ({large, index, aboveIndex, setAboveIndex, movieId, title, descrip
         <SwiperSlide 
             style={{padding: '20px 0px', zIndex: index === aboveIndex? '999' : '0'}} 
             onMouseOver={() => setAboveIndex(index)}
-            onClick={() => {setShowModal(true)}}
             >
-            <img src={IMAGE_BASE_URL + poster_path} alt="" className={`${styles.rowPoster} ${large? styles.rowPosterLarge : ''}`} />
+            <img src={IMAGE_BASE_URL + poster_path} alt="" onClick={() => {setShowModal(true)}} className={`${styles.rowPoster} ${large? styles.rowPosterLarge : ''}`} />
         </SwiperSlide>
         <Modal 
             isShowModal={isShowModal} 
