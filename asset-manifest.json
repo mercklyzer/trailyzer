@@ -1,0 +1,18 @@
+{
+  "files": {
+    "main.css": "/trailyzer/static/css/main.8c7d02fa.css",
+    "main.js": "/trailyzer/static/js/main.73f86e2e.js",
+    "static/js/787.768b2a07.chunk.js": "/trailyzer/static/js/787.768b2a07.chunk.js",
+    "static/media/loader.gif": "/trailyzer/static/media/loader.98be6661e2fe54399f62.gif",
+    "static/media/banner.jpg": "/trailyzer/static/media/banner.a2a3b9c44c59e1b34d17.jpg",
+    "static/media/trailyzer-logo.png": "/trailyzer/static/media/trailyzer-logo.f6d22a87933ed60a37bd.png",
+    "index.html": "/trailyzer/index.html",
+    "main.8c7d02fa.css.map": "/trailyzer/static/css/main.8c7d02fa.css.map",
+    "main.73f86e2e.js.map": "/trailyzer/static/js/main.73f86e2e.js.map",
+    "787.768b2a07.chunk.js.map": "/trailyzer/static/js/787.768b2a07.chunk.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.8c7d02fa.css",
+    "static/js/main.73f86e2e.js"
+  ]
+}
