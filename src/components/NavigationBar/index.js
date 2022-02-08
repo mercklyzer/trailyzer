@@ -1,7 +1,8 @@
 import React, { useEffect, useState } from "react";
 import styles from './styles.module.css'
+import SearchIcon from '@material-ui/icons/Search';
 
-const NavigationBar = props => {
+const NavigationBar = ({query, setQuery}) => {
     const [animateNav, setAnimateNav] = useState(false)
 
     useEffect(() => {
@@ -22,7 +23,14 @@ const NavigationBar = props => {
     return (
         <div className={`${styles.nav} ${animateNav? styles.navBlack : ''}`}>
             <img src={require('../../images/trailyzer-logo.png')} className={styles.navLogo} />
-            <img src={require('../../images/netflix-avatar.png')} className={styles.navAvatar} />
+            <div className={styles.rightContainer}>
+                <form className={styles.form}>
+                    <input className={styles.input} value={query} onChange={(e) => setQuery(e.target.value)}/>
+                    <SearchIcon style={{fill: 'white', cursor: 'pointer'}} />
+
+                </form>
+                <img src={require('../../images/netflix-avatar.png')} className={styles.navAvatar} />
+            </div>
 
         </div>
     )
