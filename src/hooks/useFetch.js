@@ -5,7 +5,6 @@ export const useFetch = (url, condition = true) => {
     const [state, setState] = useState({data: null, loading: true})
 
     useEffect(() => {
-        console.log(condition);
         if(condition){
             setState(state => ({data: state.data, loading: true}))
     
