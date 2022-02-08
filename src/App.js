@@ -30,7 +30,7 @@ function App() {
   return (
     <div className="App">
 
-      <NavigationBar query={query} setQuery={setQuery}/>
+      {/* <NavigationBar query={query} setQuery={setQuery}/> */}
       <Banner />
 
       {queryMoviesData.data && query !== '' && <MovieRow title={`Results for "${query}"`} movies={queryMoviesData.data} large={true}/>}
