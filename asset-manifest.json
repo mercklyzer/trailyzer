@@ -1,18 +1,18 @@
 {
   "files": {
     "main.css": "/trailyzer/static/css/main.41be7c8b.css",
-    "main.js": "/trailyzer/static/js/main.f5f40f9f.js",
+    "main.js": "/trailyzer/static/js/main.d21acca7.js",
     "static/js/787.768b2a07.chunk.js": "/trailyzer/static/js/787.768b2a07.chunk.js",
     "static/media/loader.gif": "/trailyzer/static/media/loader.98be6661e2fe54399f62.gif",
     "static/media/banner.jpg": "/trailyzer/static/media/banner.a2a3b9c44c59e1b34d17.jpg",
     "static/media/trailyzer-logo.png": "/trailyzer/static/media/trailyzer-logo.f6d22a87933ed60a37bd.png",
     "index.html": "/trailyzer/index.html",
     "main.41be7c8b.css.map": "/trailyzer/static/css/main.41be7c8b.css.map",
-    "main.f5f40f9f.js.map": "/trailyzer/static/js/main.f5f40f9f.js.map",
+    "main.d21acca7.js.map": "/trailyzer/static/js/main.d21acca7.js.map",
     "787.768b2a07.chunk.js.map": "/trailyzer/static/js/787.768b2a07.chunk.js.map"
   },
   "entrypoints": [
     "static/css/main.41be7c8b.css",
-    "static/js/main.f5f40f9f.js"
+    "static/js/main.d21acca7.js"
   ]
 }
