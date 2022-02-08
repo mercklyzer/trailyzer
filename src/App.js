@@ -33,11 +33,11 @@ function App() {
       {/* <NavigationBar query={query} setQuery={setQuery}/> */}
       <Banner />
 
-      {queryMoviesData.data && query !== '' && <MovieRow title={`Results for "${query}"`} movies={queryMoviesData.data} large={true}/>}
+      {/* {queryMoviesData.data && query !== '' && <MovieRow title={`Results for "${query}"`} movies={queryMoviesData.data} large={true}/>} */}
       {!popularMoviesData.loading && <MovieRow title="Popular Movies" movies={popularMoviesData.data} large={true}/>}
-      {!topRatedMoviesData.loading && <MovieRow title="Top Rated Movies" movies={topRatedMoviesData.data} large={true}/>}
-      {!trendingMoviesData.loading && <MovieRow title="Trending Movies" movies={trendingMoviesData.data} large={true}/>}
-      {!upcomingMoviesData.loading && <MovieRow title="Upcoming Movies" movies={upcomingMoviesData.data} large={true}/>}
+      {/* {!topRatedMoviesData.loading && <MovieRow title="Top Rated Movies" movies={topRatedMoviesData.data} large={true}/>} */}
+      {/* {!trendingMoviesData.loading && <MovieRow title="Trending Movies" movies={trendingMoviesData.data} large={true}/>} */}
+      {/* {!upcomingMoviesData.loading && <MovieRow title="Upcoming Movies" movies={upcomingMoviesData.data} large={true}/>} */}
 
     </div>
   );
