@@ -24,7 +24,7 @@ const NavigationBar = ({query, setQuery}) => {
         <div className={`${styles.nav} ${animateNav? styles.navBlack : ''}`}>
             <img src={require('../../images/trailyzer-logo.png')} className={styles.navLogo} />
             <div className={styles.rightContainer}>
-                <form className={styles.form}>
+                <form className={styles.form} onSubmit={(e) => e.preventDefault()}> 
                     <input className={styles.input} value={query} onChange={(e) => setQuery(e.target.value)}/>
                     <SearchIcon style={{fill: 'white', cursor: 'pointer'}} />
 
