@@ -13,18 +13,22 @@ const getMovieUrl = (movieId) => {
 
 const Modal = ({isShowModal, setShowModal, title, description, movieId, backdrop_path}) => {
     useEffect(() => {
-        const bodyOverflowStyle = isShowModal? 'hidden' : 'scroll'
-        document.body.style.overflowY = bodyOverflowStyle
+        if(isShowModal){
+            document.body.style.overflowY = 'hidden'
+        }
+        else{
+            document.body.style.overflowY = 'scroll'
+        }
     }, [isShowModal])
 
     const movieData = useFetch(getMovieUrl(movieId), isShowModal)
-
-    // const showIframeCounter = useRef(0)
-
     
     const [showIframeCounter, setShowIframeCounter] = useState(0)
     
     const closeModalHandler = useCallback(() => {
+        document.querySelectorAll('iframe').forEach(iframe => {
+            iframe.contentWindow.postMessage('{"event":"command","func":"pauseVideo","args":""}', '*')
+        })
         setShowIframeCounter(0)
         setShowModal(false)
     }, [])
@@ -47,11 +51,12 @@ const Modal = ({isShowModal, setShowModal, title, description, movieId, backdrop
                         {movieData.data.length === 0 && <div>No trailers available.</div>}
 
                         {movieData.data && <div className={styles.trailerContainer}>
+                            {/* loader */}
                             {movieData.data && showIframeCounter !== movieData.data?.length && <div className={styles.loaderContainer}><img src={require('../../images/loader.gif')}/></div>}
                             
                             {movieData.data.map(movie => {
                                 return <iframe key={movie.key} 
-                                src={`https://www.youtube.com/embed/${movie.key}`} 
+                                src={`https://www.youtube.com/embed/${movie.key}?enablejsapi=1`} 
                                 onLoad={() => setShowIframeCounter(ctr => ctr+1)} 
                                 allowFullScreen={true} 
                                 style={{opacity: `${showIframeCounter === movieData.data.length? 1 : 0}`}}
